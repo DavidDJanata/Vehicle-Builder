@@ -7,16 +7,16 @@ import Wheel from "./Wheel.js";
 
 // define the Cli class
 class Cli {
-  // TODO: update the vehicles property to accept Truck and Motorbike objects as well
-  // TODO: You will need to use the Union operator to define additional types for the array
-  // TODO: See the AbleToTow interface for an example of how to use the Union operator
-  vehicles: (Car)[];
+  // !Done!Update the vehicles property to accept Truck and Motorbike objects as well 
+  // !Done!You will need to use the Union operator to define additional types for the array
+  // !Done!See the AbleToTow interface for an example of how to use the Union operator
+  vehicles: (Car | Truck | Motorbike)[];
   selectedVehicleVin: string | undefined;
   exit: boolean = false;
 
-  // TODO: Update the constructor to accept Truck and Motorbike objects as well
-  constructor(vehicles: (Car)[]) {
-    this.vehicles = vehicles;
+  // !Done!Update the constructor to accept Truck and Motorbike objects as well
+  constructor(vehicles: (Car | Truck | Motorbike)[]) {
+    this.vehicles = vehicles;      
   }
 
   // static method to generate a vin
@@ -60,8 +60,8 @@ class Cli {
           type: 'list',
           name: 'vehicleType',
           message: 'Select a vehicle type',
-          // TODO: Update the choices array to include Truck and Motorbike
-          choices: ['Car'],
+          // !Done!Update the choices array to include Truck and Motorbike
+          choices: ['Car', 'Truck', 'Motorbike'],
         },
       ])
       .then((answers) => {
@@ -69,7 +69,15 @@ class Cli {
           // create a car
           this.createCar();
         }
-        // TODO: add statements to create a truck or motorbike if the user selects the respective vehicle type
+        // !Done!add statements to create a truck or motorbike if the user selects the respective vehicle type
+        else if (answers.vehicleType === 'Truck') {
+          // create a truck
+          this.createTruck();
+        }
+        else if (answers.vehicleType === 'Motorbike') {
+          // create a truck
+          this.createMotorbike();
+        }
       });
   }
 
@@ -174,6 +182,9 @@ class Cli {
         // TODO: push the truck to the vehicles array
         // TODO: set the selectedVehicleVin to the vin of the truck
         // TODO: perform actions on the truck
+        const truck = new Truck(
+          Cli.generateVin();
+        )
       });
   }
 
